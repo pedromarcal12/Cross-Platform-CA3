@@ -1,0 +1,20 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": " Pedro and Willian",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.4",
+    "electron": "^18.2.4",
+    "electron-builder": "^23.0.3",
+    "electron-packager": "^15.5.1",
+    "nwbuild": "^0.0.5",
+    "osenv": "^0.1.4",
+    "uuid": "^3.3.2"
+  }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity bill Calculator</title>
+    <link rel="stylesheet" href="./calc/styleCalc.css">
+    <script src="./calc/scriptCalc.js"></script>
+</head>
+
+<body>
+    <main>
+        <div id="loader-holder">
+            <div class="loader-spinner"></div>
+            <div>
+                <center><small>Please wait...</small></center>
+            </div>
+        </div>
+        <h1 id="app-title">Electricity bill Calculator </h1>
+        <div id="form-holder">
+            <div id="main-box">
+                <form action="" id="calculate-form">
+                    <div class="form-item">
+                        <label for="units-amount"><b>Enter Units Amount</b></label>
+                        <input type="number" step="any" min="0" name="units-amount" id="units-amount" placeholder="xxxxx" class="input-item text-right" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="value-vat"><b>Vat Interest 13.5 </b> <small>(%)</small></label>
+                        <label  type="number" step="any" name="value-vat" id="value-vat"  class="input-item text-right" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="days-cal"><b>How many days </b></label>
+                        <input type="number" step="any" min="1" name="days-cal" id="days-cal" placeholder="x" class="input-item text-right" required>
+                    </div>
+                    <div class="form-item">
+                        <button class="btn-block" id="calculate-btn" type="submit">Calucate</button>
+                        <button class="btn-block" id="reset-btn" type="reset">Reset</button>
+                    </div>
+                </form>
+                <table id="result">
+                    <colgroup>
+                        <col width="50%">
+                        <col width="50%">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td class=""><b>Qtd of Units</b></td>
+                            <td class="text-right" id="qtd-units"></td>
+                        </tr>
+                        <tr>
+                            <td class=""><b>porcentage of Vat</b></td>
+                            <td class="text-right" id="value-of-vat"></td>
+                        </tr>
+                        <tr>
+                            <td class=""><b>Days calc</b></td>
+                            <td class="text-right" id="days-calc"></td>
+                        </tr>
+                        <tr>
+                            <td class=""><b>Value of the Vat to pay</b></td>
+                            <td class="text-right" id="vat-pay"></td>
+                        </tr>
+                        <tr>
+                            <td class=""><b>Total out  Vat</b></td>
+                            <td class="text-right" id="total-pay"></td>
+                        </tr>
+                        <tr>
+                            <td class=""><b>Total final</b></td>
+                            <td class="text-right" id="total-interest"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

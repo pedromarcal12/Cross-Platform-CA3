@@ -1,0 +1,43 @@
+body {
+    height: 100%;
+    width: 100%;
+    padding: 0!important;
+    margin: unset;
+}
+
+body * {
+    font-family: 'Arial', Tahoma, Geneva, Verdana, sans-serif, cursive;
+}
+
+body{
+    margin: unset !important;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(47, 47, 47, 1) 37%, rgba(47, 47, 47, 1) 61%, rgba(0, 0, 0, 1) 100%);
+}
+
+#app-title {
+    margin: 1rem 4rem;
+    text-align: center;
+    font-family: arial;
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 5px 5px 10px #4b889f;
+}
+
+
+
+footer {
+    margin-top: auto;
+    position: absolute !important;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+ }
