@@ -5,7 +5,7 @@ const uuid = require("uuid");
 const electron = require("electron");
 const { app, BrowserWindow, Menu, ipcMain, Tray } = electron;
 
-//Creating variables
+/*Creating variables*/
 let frontPageWindow;
 let createWindow;
 let listWindow;
@@ -22,7 +22,7 @@ app.on("ready", () => {
     webPreferences: {
       nodeIntegration: true
     },
-    //Main pagecode
+    /*Main pagecode*/
     title: "Electricy Bill App"
   });
   
@@ -37,7 +37,7 @@ app.on("ready", () => {
   Menu.setApplicationMenu(mainMenu);
 });
 
-//Creating calculator window
+/*Creating calculator window*/
 const createWindowCreator = () => {
   createWindow = new BrowserWindow({
     webPreferences: {
@@ -48,7 +48,7 @@ const createWindowCreator = () => {
     title: "Calculator"
   });
 
-  //Creating windows 
+ /*Creating windows */
   createWindow.setMenu(null);
 
   createWindow.loadURL(`file://${__dirname}/calculator.html`);
@@ -61,7 +61,7 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
-// menuTemplate and sub where you can go  to another window
+/* menuTemplate and sub where you can go  to another window*/
 const menuTemplate = [
   {
     label: "File",
@@ -84,7 +84,7 @@ const menuTemplate = [
       }
     ]
   },
-  //this submenu is very important to debug the program when something goes wrong
+  /*this submenu is very important to debug the program when something goes wrong*/
   {
     label: "View",
     submenu: [{ role: "reload", accelerator: process.platform === "darwin" ? "Command+R" : "Ctrl+R"}, 
