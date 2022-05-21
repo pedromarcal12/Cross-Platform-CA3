@@ -1,3 +1,4 @@
+
 const electron = require("electron");
 const { app, BrowserWindow, Menu, ipcMain, Tray } = electron;
 
