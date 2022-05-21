@@ -10,7 +10,6 @@ let frontPageWindow;
 let createWindow;
 let listWindow;
 
-
 fs.readFile("db.json", (err, jsonAppointments) => {
   if (!err) {
     const oldAppointments = JSON.parse(jsonAppointments);
