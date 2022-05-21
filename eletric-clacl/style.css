@@ -32,6 +32,18 @@ body{
 
 
 
+
+#app-title2 {
+    margin: 1rem 3rem;
+    text-align: center;
+    font-family: arial;
+    font-size: 2rem;
+    color: green;
+    text-shadow: 5px 5px 10px #4b889f;
+}
+
+
+
 footer {
     margin-top: auto;
     position: absolute !important;
