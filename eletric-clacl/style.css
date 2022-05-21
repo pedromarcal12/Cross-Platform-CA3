@@ -29,19 +29,14 @@ body{
     color: #fff;
     text-shadow: 5px 5px 10px #4b889f;
 }
-
-
-
-
-#app-title2 {
-    margin: 1rem 3rem;
+#app-title2{
+    margin: 1rem 4rem;
     text-align: center;
     font-family: arial;
-    font-size: 2rem;
-    color: green;
-    text-shadow: 5px 5px 10px #4b889f;
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 5px 5px 10px #bc1e1e;
 }
-
 
 
 footer {

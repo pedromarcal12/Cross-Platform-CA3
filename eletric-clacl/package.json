@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron ."
   },
-  "author": "Pedro and Willian",
+  "author": "Pedro Marcal esteves 2020300 / Willian Lopes do Amaral 2020487",
   "license": "ISC",
   "dependencies": {
     "async": "^2.1.4",
