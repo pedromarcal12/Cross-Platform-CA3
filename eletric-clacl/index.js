@@ -1,4 +1,3 @@
- //To create electron extension.
 const electron = require("electron");
 const fs = require("fs");
 const uuid = require("uuid");
