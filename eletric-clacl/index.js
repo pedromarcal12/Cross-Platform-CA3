@@ -58,14 +58,12 @@ const createWindowCreator = () => {
   createWindow.on("closed", () => (createWindow = null));
 };
 
-
-
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
 })
-
+// menuTemplate and sub where you can go  to another window
 const menuTemplate = [
   {
     label: "File",
@@ -88,6 +86,7 @@ const menuTemplate = [
       }
     ]
   },
+  //this submenu is very important to debug the program when something goes wrong
   {
     label: "View",
     submenu: [{ role: "reload", accelerator: process.platform === "darwin" ? "Command+R" : "Ctrl+R"}, 
