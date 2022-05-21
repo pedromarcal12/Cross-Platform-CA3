@@ -1,21 +1,11 @@
 const electron = require("electron");
-const fs = require("fs");
-const uuid = require("uuid");
+const { app, BrowserWindow, Menu, ipcMain, Tray } = electron;
 
-const { app, BrowserWindow, Menu, ipcMain, tray } = electron;
-
+let tray = null;
 let frontPageWindow;
 let createWindow;
 let listWindow;
-
-let allResults = [];
-
-fs.readFile("db.json", (err, jsonAppointments) => {
-  if (!err) {
-    const oldAppointments = JSON.parse(jsonAppointments);
-    allAppointments = oldAppointments;
-  }
-});
+let condicionWindow=false;
 
 app.on("ready", () => {
   frontPageWindow = new BrowserWindow({
@@ -24,11 +14,10 @@ app.on("ready", () => {
     },
     title: "Electricy Bill App"
   });
+  
   frontPageWindow.loadURL(`file://${__dirname}/frontPage.html`);
   frontPageWindow.on("closed", () => {
-    const jsonAppointments = JSON.stringify(allResults);;
-    fs.writeFileSync("db.json", jsonAppointments);
-
+  
     app.quit();
     frontPageWindow = null;
   });
@@ -61,7 +50,7 @@ const listWindowCreator = () => {
     },
     width: 600,
     height: 400,
-    title: "All Results"
+    title: "Conclution"
   });
 
   listWindow.setMenu(null);
@@ -71,38 +60,6 @@ const listWindowCreator = () => {
   listWindow.on("closed", () => (listWindow = null));
 };
 
-ipcMain.on("appointment:create", (event, appointment) => {
-  appointment["id"] = uuid();
-  appointment["done"] = 0;
-  allAppointments.push(appointment);
-
-  sendTodayAppointments();
-  createWindow.close();
-});
-
-ipcMain.on("bill:request:list", event => {
-  listWindow.webContents.send("bill:response:list", allResults);
-});
-
-ipcMain.on("bill:request:frontPage", event => {
-  sendTodayAppointments();
-});
-
-ipcMain.on("bill:done", (event, id) => {
-  allResults.forEach(bill => {
-    if (bill.id === id) bill.done = 1;
-  });
-
-  sendfrontPagebills();
-});
-
-const sendfrontPagebills = () => {
-  const frontPage = new Date().toISOString().slice(0, 10);
-  const filtered = allResults.filter(
-    bill => bill.date === frontPage
-  );
-  frontPageWindow.webContents.send("appointment:response:today", filtered);
-};
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -112,21 +69,19 @@ app.on('window-all-closed', () => {
 const menuTemplate = [
   {
     label: "File",
-
     submenu: [
       {
         label: "New bill",
-
+        accelerator: process.platform === "darwin" ? "Command+N" : "Ctrl+N",
         click() {
           createWindowCreator();
-
-
+         
         }
       },
 
       {
         label: "All bills",
-
+        accelerator: process.platform === "darwin" ? "Command+A" : "Ctrl+A",
         click() {
           listWindowCreator();
         }
@@ -134,9 +89,7 @@ const menuTemplate = [
 
       {
         label: "Quit",
-
         accelerator: process.platform === "darwin" ? "Command+Q" : "Ctrl+Q",
-
         click() {
           app.quit();
         }
@@ -145,6 +98,7 @@ const menuTemplate = [
   },
   {
     label: "View",
-    submenu: [{ role: "reload" }, { role: "toggledevtools" }]
+    submenu: [{ role: "reload", accelerator: process.platform === "darwin" ? "Command+R" : "Ctrl+R"}, 
+    { role: "toggledevtools" , accelerator: process.platform === "darwin" ? "Command+T" : "Ctrl+T" }]
   }
 ];
