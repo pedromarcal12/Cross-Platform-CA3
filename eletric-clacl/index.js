@@ -1,28 +1,17 @@
 const electron = require("electron");
-const fs = require("fs");
-const uuid = require("uuid");
-
-const electron = require("electron");
 const { app, BrowserWindow, Menu, ipcMain, Tray } = electron;
 
-/*Creating variables*/
+let tray = null;
 let frontPageWindow;
 let createWindow;
 let listWindow;
-
-fs.readFile("db.json", (err, jsonAppointments) => {
-  if (!err) {
-    const oldAppointments = JSON.parse(jsonAppointments);
-    allAppointments = oldAppointments;
-  }
-});
+let condicionWindow=false;
 
 app.on("ready", () => {
   frontPageWindow = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true
     },
-    /*Main pagecode*/
     title: "Electricy Bill App"
   });
   
@@ -37,7 +26,6 @@ app.on("ready", () => {
   Menu.setApplicationMenu(mainMenu);
 });
 
-/*Creating calculator window*/
 const createWindowCreator = () => {
   createWindow = new BrowserWindow({
     webPreferences: {
@@ -48,7 +36,6 @@ const createWindowCreator = () => {
     title: "Calculator"
   });
 
- /*Creating windows */
   createWindow.setMenu(null);
 
   createWindow.loadURL(`file://${__dirname}/calculator.html`);
@@ -56,12 +43,30 @@ const createWindowCreator = () => {
   createWindow.on("closed", () => (createWindow = null));
 };
 
+const listWindowCreator = () => {
+  listWindow = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true
+    },
+    width: 600,
+    height: 400,
+    title: "Conclution"
+  });
+
+  listWindow.setMenu(null);
+
+  listWindow.loadURL(`file://${__dirname}/list.html`);
+
+  listWindow.on("closed", () => (listWindow = null));
+};
+
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
 })
-/* menuTemplate and sub where you can go  to another window*/
+/* */
 const menuTemplate = [
   {
     label: "File",
@@ -76,6 +81,14 @@ const menuTemplate = [
       },
 
       {
+        label: "All bills",
+        accelerator: process.platform === "darwin" ? "Command+A" : "Ctrl+A",
+        click() {
+          listWindowCreator();
+        }
+      },
+
+      {
         label: "Quit",
         accelerator: process.platform === "darwin" ? "Command+Q" : "Ctrl+Q",
         click() {
@@ -84,7 +97,6 @@ const menuTemplate = [
       }
     ]
   },
-  /*this submenu is very important to debug the program when something goes wrong*/
   {
     label: "View",
     submenu: [{ role: "reload", accelerator: process.platform === "darwin" ? "Command+R" : "Ctrl+R"}, 
