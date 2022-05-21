@@ -1,15 +1,11 @@
-<<<<<<< HEAD
  //To create electron extension.
 const electron = require("electron");
 const fs = require("fs");
 const uuid = require("uuid");
-=======
->>>>>>> f46c69b62b3f12ee338e0a5e33b393f170404015
 
 const electron = require("electron");
 const { app, BrowserWindow, Menu, ipcMain, Tray } = electron;
 
-<<<<<<< HEAD
 //Creating variables
 let frontPageWindow;
 let createWindow;
@@ -22,13 +18,6 @@ fs.readFile("db.json", (err, jsonAppointments) => {
     allAppointments = oldAppointments;
   }
 });
-=======
-let tray = null;
-let frontPageWindow;
-let createWindow;
-let listWindow;
-let condicionWindow=false;
->>>>>>> f46c69b62b3f12ee338e0a5e33b393f170404015
 
 app.on("ready", () => {
   frontPageWindow = new BrowserWindow({
@@ -69,25 +58,6 @@ const createWindowCreator = () => {
   createWindow.on("closed", () => (createWindow = null));
 };
 
-<<<<<<< HEAD
-=======
-const listWindowCreator = () => {
-  listWindow = new BrowserWindow({
-    webPreferences: {
-      nodeIntegration: true
-    },
-    width: 600,
-    height: 400,
-    title: "Conclution"
-  });
-
-  listWindow.setMenu(null);
-
-  listWindow.loadURL(`file://${__dirname}/list.html`);
-
-  listWindow.on("closed", () => (listWindow = null));
-};
->>>>>>> f46c69b62b3f12ee338e0a5e33b393f170404015
 
 
 app.on('window-all-closed', () => {
@@ -110,17 +80,6 @@ const menuTemplate = [
       },
 
       {
-<<<<<<< HEAD
-=======
-        label: "All bills",
-        accelerator: process.platform === "darwin" ? "Command+A" : "Ctrl+A",
-        click() {
-          listWindowCreator();
-        }
-      },
-
-      {
->>>>>>> f46c69b62b3f12ee338e0a5e33b393f170404015
         label: "Quit",
         accelerator: process.platform === "darwin" ? "Command+Q" : "Ctrl+Q",
         click() {
