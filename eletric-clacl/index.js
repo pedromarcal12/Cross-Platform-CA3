@@ -62,14 +62,6 @@ const menuTemplate = [
       },
 
       {
-        label: "All bills",
-        accelerator: process.platform === "darwin" ? "Command+A" : "Ctrl+A",
-        click() {
-          listWindowCreator();
-        }
-      },
-
-      {
         label: "Quit",
         accelerator: process.platform === "darwin" ? "Command+Q" : "Ctrl+Q",
         click() {
