@@ -5,7 +5,6 @@ let tray = null;
 let frontPageWindow;
 let createWindow;
 let listWindow;
-let condicionWindow=false;
 
 app.on("ready", () => {
   frontPageWindow = new BrowserWindow({
@@ -42,24 +41,6 @@ const createWindowCreator = () => {
 
   createWindow.on("closed", () => (createWindow = null));
 };
-
-const listWindowCreator = () => {
-  listWindow = new BrowserWindow({
-    webPreferences: {
-      nodeIntegration: true
-    },
-    width: 600,
-    height: 400,
-    title: "Conclution"
-  });
-
-  listWindow.setMenu(null);
-
-  listWindow.loadURL(`file://${__dirname}/list.html`);
-
-  listWindow.on("closed", () => (listWindow = null));
-};
-
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
